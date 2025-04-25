@@ -1,7 +1,7 @@
 // ► JS noise – redirect POUZE po kliku
 (function () {
-  const hash   = "{{BUILD_HASH}}";        // doplní CI skript
-  const target = "/p/" + hash;            // server-side 302 v _worker.js
+  const hash   = "{{BUILD_HASH}}";
+  const target = "/p/" + hash;
 
   document.getElementById("vip-btn").addEventListener("click", e => {
     e.preventDefault();
