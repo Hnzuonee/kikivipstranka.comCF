@@ -1,18 +1,18 @@
-// ► JS noise + redirect to /p/<hash>
-(function(){
-  const hash = "{{BUILD_HASH}}";
-  const target = "/p/" + hash;
+// ► JS noise – pouze fingerprint + redirect AŽ PO KLIKU
+(function () {
+  const hash   = "{{BUILD_HASH}}";           // CI doplní SHA / timestamp
+  const target = "/p/" + hash;               // server-side 302
 
-  // click handler
-  document.getElementById("vip-btn").addEventListener("click", e=>{
-    e.preventDefault();
-    location.href = target;
-  });
+  // redirect spouštíme jen při kliku
+  document
+    .getElementById("vip-btn")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      location.href = target;
+    });
 
-  // auto redirect 300–800 ms
-  setTimeout(()=>location.href = target,
-             300 + Math.random()*500);
-
+  // fingerprint noise pro IG heuristiku
   const r = Math.random();
-  if(r > 0.94) console.log("k4-big2 noise", r);
+  if (r > 0.94) console.log("k4-big2 noise", r);
+
 })();
