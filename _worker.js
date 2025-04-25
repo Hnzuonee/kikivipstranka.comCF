@@ -2,14 +2,16 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // server‑side cloak: /p/<hash> → 302 to OnlyFans
+    // /p/<hash> → 302 na správný OnlyFans link
     if (url.pathname.startsWith("/p/")) {
       const hash = url.pathname.split("/").pop();
-      const dest = "https://onlyfans.com/kikibig?b=" + hash;
-      return Response.redirect(dest, 302);
+      return Response.redirect(
+        "https://onlyfans.com/kristynka.cengerova?b=" + hash,
+        302
+      );
     }
 
-    // everything else = static asset
+    // ostatní statické soubory
     return env.ASSETS.fetch(request);
   }
 };
