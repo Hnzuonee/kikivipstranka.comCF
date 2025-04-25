@@ -2,7 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // /p/<hash> → 302 na správný OnlyFans link
+    // /p/<hash> → 302 OnlyFans
     if (url.pathname.startsWith("/p/")) {
       const hash = url.pathname.split("/").pop();
       return Response.redirect(
@@ -10,8 +10,7 @@ export default {
         302
       );
     }
-
-    // ostatní statické soubory
+    // statické soubory
     return env.ASSETS.fetch(request);
   }
 };
